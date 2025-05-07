@@ -76,3 +76,6 @@ git cherry-pick <commit>	                Applies a specific commit from another 
 git tag <tag-name>	                        Creates a tag to mark a specific commit (e.g., a release).	            git tag v1.0
 git push origin <tag-name>	                Pushes a tag to the remote repository.	                                git push origin v1.0
 git blame <file>	                        Shows who last modified each line of a file.	                        git blame policy.json
+ 
+ # enter
+  
