@@ -1,0 +1,78 @@
+# this contains useful git commands and its uses. 
+
+These commands set up and configure a Git repository.
+
+# Repository Setup and Initialization
+
+Command	                                              Use	                                                                    Example
+git init	                                   Initializes a new Git repository in the current directory.	             
+git clone                                      <repository-url>	Creates a local copy of a remote repository.	      git clone https://github.com/user/repo.git
+git config --global user.name "<name>"	       Sets the global username for commits.	                              git config --global user.name "John Doe"
+git config --global user.email "<email>"	   Sets the global email for commits.	                                  git config --global user.email "john@example.com"
+
+git remote add origin <repository-url>	       Links a local repository to a remote one.	                          git remote add origin https://github.com/user/repo.git
+
+# Staging and Committing Changes
+
+git status	                                  Shows the current state of the working directory and staging area.	git status (Lists modified, staged, or untracked files.)
+git add <file>	                              Stages specific files for a commit.	                                git add README.md (Stages README.md.)
+git add .	                                  Stages all modified and new files in the current directory.	        git add .
+git commit -m "<message>"	                  Commits staged changes with a descriptive message.	                git commit -m "Add S3 bucket template"
+git commit --amend	                          Modifies the most recent commit (e.g., to edit the message or add files). git commit --amend -m "Updated commit message"
+git restore <file>	                          Discards changes to a file in the working directory.	                git restore config.yaml (Reverts changes to config.yaml.)
+
+git restore --staged <file>	                  Unstages a file while preserving changes.	                            git restore --staged config.yaml
+
+
+# Branching and Merging 
+
+git branch	                                  Lists all branches in the repository.	                                git branch (Shows branches, with * on the current one.)
+
+git branch <branch-name>	                  Creates a new branch.	                                                git branch feature-iam-policy
+git checkout <branch-name>	                  Switches to a specified branch.	                                    git checkout feature-iam-policy
+git checkout -b <branch-name>	              Creates and switches to a new branch in one step.	                    git checkout -b feature-iam-policy
+git merge <branch-name>	                      Merges the specified branch into the current branch.	                git merge feature-iam-policy (Merges into main.)
+git branch -d <branch-name>	                  Deletes a branch that’s been merged.	                                git branch -d feature-iam-policy
+
+# Collaboration and Remote Repositories
+
+Command	Use	Example
+git push origin <branch-name>	              Pushes local commits to a remote branch.	                            git push origin main
+git pull origin <branch-name>	              Fetches and merges changes from a remote branch.	                    git pull origin main
+git fetch origin	                          Downloads updates from the remote repository without merging.	        git fetch origin
+git remote -v	                              Lists remote repositories and their URLs.	                            git remote -v
+git push --force	                          Overwrites the remote branch with local changes (use cautiously).	    git push --force (Only after confirming it’s safe.)
+
+# Viewing History and Differences
+
+git log	                                      Shows the commit history.	                                            git log (Lists commits with SHA, author, date,                                                                                                               and message.)
+
+git log --oneline	                          Displays a condensed commit history.	                                git log --oneline (One line per commit.)
+git diff	                                  Shows differences between the working directory and staged changes.	git diff
+git diff <commit1> <commit2>	            Compares changes between two commits.	                                git diff abc123 def456
+git show <commit>	                        Displays details of a specific commit.	                                git show abc123
+
+# Undoing Changes and Resolving Mistakes
+
+git reset --soft <commit>	                Undoes commits but keeps changes in the staging area.	                git reset --soft HEAD^ (Undoes the last commit.)
+git reset --hard <commit>	                Undoes commits and discards changes.	                                git reset --hard HEAD^ (Resets to the previous commit.)
+git revert <commit>	                        Creates a new commit that undoes a specific commit.	                    git revert abc123
+git clean -f	                            Removes untracked files from the working directory.	                    git clean -f
+git stash	                                Temporarily saves uncommitted changes to work on something else.	    git stash
+git stash pop	                            Applies and removes the most recent stashed changes.	                git stash pop
+
+# Handling Merge Conflicts
+
+git merge <branch-name>	                    Starts a merge, which may trigger a conflict.	                        git merge feature-iam-policy
+git status	                                Identifies files with conflicts.	                                    git status (Shows conflicted files.)
+git add <file>	                            Marks a resolved conflict file as ready to commit.	                    git add policy.json
+git commit	                                Completes the merge after resolving conflicts.	                        git commit
+
+
+# Advanced Commands
+
+git rebase <branch>	                        Reapplies commits from the current branch onto another, creating a cleaner history.	git rebase main
+git cherry-pick <commit>	                Applies a specific commit from another branch.	                        git cherry-pick abc123
+git tag <tag-name>	                        Creates a tag to mark a specific commit (e.g., a release).	            git tag v1.0
+git push origin <tag-name>	                Pushes a tag to the remote repository.	                                git push origin v1.0
+git blame <file>	                        Shows who last modified each line of a file.	                        git blame policy.jso
